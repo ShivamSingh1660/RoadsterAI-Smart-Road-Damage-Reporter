@@ -11,7 +11,7 @@ const DEMO_REPORTS: Report[] = [
     location: 'Hazratganj Road, Lucknow',
     latitude: 26.8467,
     longitude: 80.9462,
-    imageUrl: 'https://images.unsplash.com/photo-1515162816999-a0c47dc192f7?auto=format&fit=crop&w=900&q=80',
+    imageUrl: '/road_pothole.jpg',
     confidence: 87.4,
     recommendedAction: 'Schedule repair within 7 days due to safety risk.',
     createdAt: '2026-10-22T10:24:00Z',
@@ -28,7 +28,7 @@ const DEMO_REPORTS: Report[] = [
     location: 'Gomti Nagar, Lucknow',
     latitude: 26.8563,
     longitude: 80.9779,
-    imageUrl: 'https://images.unsplash.com/photo-1545459720-aac8509eb02c?auto=format&fit=crop&w=900&q=80',
+    imageUrl: '/road_crack.jpg',
     confidence: 88.7,
     recommendedAction: 'Seal crack with bitumen compound. Monitor for expansion.',
     createdAt: '2026-10-20T11:15:00Z',
@@ -45,7 +45,7 @@ const DEMO_REPORTS: Report[] = [
     location: 'Charbagh, Lucknow',
     latitude: 26.8393,
     longitude: 80.9231,
-    imageUrl: 'https://images.unsplash.com/photo-1578637387939-43c525550085?auto=format&fit=crop&w=900&q=80',
+    imageUrl: '/road_erosion.jpg',
     confidence: 91.5,
     recommendedAction: 'Schedule resurfacing. Mark area with warning signs.',
     createdAt: '2026-10-19T14:45:00Z',
@@ -62,7 +62,7 @@ const DEMO_REPORTS: Report[] = [
     location: 'Indira Nagar, Lucknow',
     latitude: 26.8729,
     longitude: 80.9908,
-    imageUrl: 'https://images.unsplash.com/photo-1508873696983-2df5703bc20d?auto=format&fit=crop&w=900&q=80',
+    imageUrl: '/road_water.jpg',
     confidence: 96.1,
     recommendedAction: 'Clear blocked drainage. Install additional pump if needed.',
     createdAt: '2026-10-18T07:00:00Z',
@@ -79,7 +79,7 @@ const DEMO_REPORTS: Report[] = [
     location: 'Aliganj, Lucknow',
     latitude: 26.8895,
     longitude: 80.9420,
-    imageUrl: 'https://images.unsplash.com/photo-1517649763962-0c623266ddc0?auto=format&fit=crop&w=900&q=80',
+    imageUrl: '/road_pothole.jpg',
     confidence: 89.3,
     recommendedAction: 'Full lane repair needed. Temporary filling recommended immediately.',
     createdAt: '2026-10-17T16:20:00Z',
@@ -96,7 +96,7 @@ const DEMO_REPORTS: Report[] = [
     location: 'Aminabad, Lucknow',
     latitude: 26.8440,
     longitude: 80.9370,
-    imageUrl: 'https://images.unsplash.com/photo-1545459720-aac8509eb02c?auto=format&fit=crop&w=900&q=80',
+    imageUrl: '/road_crack.jpg',
     confidence: 85.6,
     recommendedAction: 'Apply crack sealant. Monitor area post-monsoon.',
     createdAt: '2026-10-12T11:30:00Z',
@@ -113,7 +113,7 @@ const DEMO_REPORTS: Report[] = [
     location: 'IT City, Lucknow',
     latitude: 26.8100,
     longitude: 80.9900,
-    imageUrl: 'https://images.unsplash.com/photo-1515162816999-a0c47dc192f7?auto=format&fit=crop&w=900&q=80',
+    imageUrl: '/road_erosion.jpg',
     confidence: 92.8,
     recommendedAction: 'Complete road reconstruction needed. Divert traffic until repaired.',
     createdAt: '2026-10-10T09:00:00Z',
@@ -130,7 +130,7 @@ const DEMO_REPORTS: Report[] = [
     location: 'Mahanagar, Lucknow',
     latitude: 26.8700,
     longitude: 80.9500,
-    imageUrl: 'https://images.unsplash.com/photo-1578637387939-43c525550085?auto=format&fit=crop&w=900&q=80',
+    imageUrl: '/road_erosion.jpg',
     confidence: 78.4,
     recommendedAction: 'Schedule preventive maintenance in next quarter.',
     createdAt: '2026-10-05T13:00:00Z',
@@ -139,7 +139,7 @@ const DEMO_REPORTS: Report[] = [
   },
 ];
 
-const STORAGE_KEY = 'roadsterai_reports_v2';
+const STORAGE_KEY = 'roadsterai_reports_v5';
 
 export function loadReports(): Report[] {
   try {

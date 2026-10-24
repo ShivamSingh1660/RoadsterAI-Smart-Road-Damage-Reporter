@@ -25,7 +25,7 @@ const severities: Severity[] = ['Low', 'Medium', 'High', 'Critical'];
 const exampleImages = [
   {
     label: 'Deep Pothole',
-    url: 'https://images.unsplash.com/photo-1515162816999-a0c47dc192f7?auto=format&fit=crop&w=700&q=80',
+    url: '/road_pothole.jpg',
     category: 'Pothole' as Category,
     severity: 'Critical' as Severity,
     location: 'Hazratganj Road, Lucknow',
@@ -37,7 +37,7 @@ const exampleImages = [
   },
   {
     label: 'Road Crack',
-    url: 'https://images.unsplash.com/photo-1545459720-aac8509eb02c?auto=format&fit=crop&w=700&q=80',
+    url: '/road_crack.jpg',
     category: 'Road Crack' as Category,
     severity: 'High' as Severity,
     location: 'Gomti Nagar Main Road, Lucknow',
@@ -49,7 +49,7 @@ const exampleImages = [
   },
   {
     label: 'Surface Erosion',
-    url: 'https://images.unsplash.com/photo-1578637387939-43c525550085?auto=format&fit=crop&w=700&q=80',
+    url: '/road_erosion.jpg',
     category: 'Surface Damage' as Category,
     severity: 'Medium' as Severity,
     location: 'Charbagh Station Circle, Lucknow',
@@ -61,7 +61,7 @@ const exampleImages = [
   },
   {
     label: 'Waterlogging',
-    url: 'https://images.unsplash.com/photo-1508873696983-2df5703bc20d?auto=format&fit=crop&w=700&q=80',
+    url: '/road_water.jpg',
     category: 'Waterlogging' as Category,
     severity: 'Medium' as Severity,
     location: 'Indira Nagar Underpass, Lucknow',
@@ -73,7 +73,7 @@ const exampleImages = [
   },
   {
     label: 'Surface Wear',
-    url: 'https://images.unsplash.com/photo-1517649763962-0c623266ddc0?auto=format&fit=crop&w=700&q=80',
+    url: '/road_erosion.jpg',
     category: 'Surface Damage' as Category,
     severity: 'Low' as Severity,
     location: 'Mahanagar Sector B, Lucknow',
@@ -84,6 +84,7 @@ const exampleImages = [
     recommendedAction: 'Repaint road thermo-strips and conduct quarterly review.',
   },
 ];
+
 
 export default function ReportDamage() {
   const navigate = useNavigate();
