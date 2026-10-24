@@ -115,7 +115,7 @@ export default function MapPage() {
       </div>
 
       {/* Filter and Legend Bar */}
-      <div className="bg-white rounded-2xl p-3 sm:p-4 border border-[#E2E6DC] shadow-xs flex flex-col lg:flex-row lg:items-center lg:justify-between gap-3">
+      <div className="saas-card p-4 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-3">
         {/* Left Inputs */}
         <div className="flex flex-wrap items-center gap-2.5 flex-1">
           {/* Search Location */}
@@ -194,15 +194,15 @@ export default function MapPage() {
         <div
           className={`${
             selectedReport ? 'lg:col-span-8 xl:col-span-8' : 'lg:col-span-12'
-          } rounded-3xl overflow-hidden border border-[#E2E6DC] shadow-xs relative bg-white transition-all`}
-          style={{ height: 'calc(100vh - 270px)', minHeight: '460px' }}
+          } saas-card overflow-hidden relative bg-white transition-all`}
+          style={{ height: 'calc(100vh - 270px)', minHeight: '480px' }}
         >
           {mapError ? (
             <div className="h-full flex flex-col items-center justify-center p-6 text-center">
               <MapPin size={40} className="text-[#88998F] mb-3" />
               <h3 className="text-base font-bold text-[#15221B]">Map Offline Mode</h3>
               <p className="text-xs text-[#5C6E63] max-w-sm mt-1">
-                Showing offline incident coordinates. All {filteredReports.length} reports are active.
+                Showing incident coordinates. All {filteredReports.length} reports are active.
               </p>
             </div>
           ) : (
@@ -212,13 +212,11 @@ export default function MapPage() {
               style={{ height: '100%', width: '100%' }}
               scrollWheelZoom={true}
             >
-              {/* CartoDB Positron: Beautiful light off-white tiles */}
+              {/* OpenStreetMap: 100% Free, reliable, NO API Key Required */}
               <TileLayer
-                attribution='&copy; <a href="https://carto.com/">CARTO</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-                url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
-                eventHandlers={{
-                  tileerror: () => setMapError(false), // keep graceful
-                }}
+                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                maxZoom={19}
               />
 
               {filteredReports.map((report) => (
@@ -266,7 +264,7 @@ export default function MapPage() {
 
         {/* Selected Report Side Card (Matches Reference Image Screen 3) */}
         {selectedReport && (
-          <div className="lg:col-span-4 xl:col-span-4 bg-white rounded-3xl p-5 border border-[#E2E6DC] shadow-xs flex flex-col justify-between space-y-4 animate-fade-in">
+          <div className="lg:col-span-4 xl:col-span-4 saas-card p-5 flex flex-col justify-between space-y-4 animate-fade-in">
             <div>
               {/* Header */}
               <div className="flex items-center justify-between mb-3">

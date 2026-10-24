@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect, type FormEvent } from 'react';
 import { Routes, Route, NavLink, useLocation, useNavigate } from 'react-router-dom';
 import {
   LayoutDashboard,
@@ -8,7 +8,6 @@ import {
   BarChart3,
   Info,
   Menu,
-  X,
   Search,
   Bell,
   ChevronLeft,
@@ -66,7 +65,7 @@ export default function App() {
     }
   };
 
-  const handleSearchSubmit = (e: React.FormEvent) => {
+  const handleSearchSubmit = (e: FormEvent) => {
     e.preventDefault();
     if (searchQuery.trim()) {
       navigate(`/my-reports?q=${encodeURIComponent(searchQuery.trim())}`);
@@ -77,7 +76,7 @@ export default function App() {
 
   return (
     <ToastProvider>
-      <div className="flex h-screen w-screen overflow-hidden bg-[#EEF1E8] text-[#11231B] font-sans antialiased">
+      <div className="flex h-screen w-screen overflow-hidden bg-[#E7ECE1] text-[#11231B] font-sans antialiased">
         {/* Mobile overlay */}
         {mobileOpen && (
           <div
@@ -184,72 +183,93 @@ export default function App() {
         </aside>
 
         {/* Main Content Area */}
-        <main className="flex-1 flex flex-col min-w-0 overflow-hidden bg-[#EEF1E8]">
-          {/* Top Bar Header with Generous Whitespace */}
-          <header className="flex items-center justify-between px-8 lg:px-12 h-[76px] shrink-0 bg-[#EEF1E8] border-b border-[#D8DDD1]">
-            <div className="flex items-center gap-4">
+        <main className="flex-1 flex flex-col min-w-0 overflow-hidden bg-[#E7ECE1]">
+          {/* Top Bar Header with Generous Whitespace & Crisp Borders */}
+          <header className="flex items-center justify-between px-6 sm:px-10 lg:px-12 h-20 shrink-0 bg-white border-b border-[#CCD5C5] shadow-[0_1px_4px_rgba(17,35,27,0.04)] z-20">
+            {/* Left: Mobile Toggle & Breadcrumbs */}
+            <div className="flex items-center gap-3.5">
               <button
                 onClick={() => setMobileOpen(true)}
-                className="lg:hidden p-2 rounded-xl text-[#4E5F55] hover:text-[#11231B] hover:bg-white border border-[#D8DDD1] transition-colors"
+                className="lg:hidden p-2.5 rounded-xl text-[#4E5F55] hover:text-[#11231B] hover:bg-[#F2F5ED] border border-[#CCD5C5] transition-colors"
                 aria-label="Open navigation menu"
               >
                 <Menu size={19} />
               </button>
-              <div className="hidden sm:flex items-center gap-2 text-xs font-semibold text-[#5A6C62]">
+              <div className="hidden sm:flex items-center gap-2 text-xs font-semibold text-[#66786C]">
                 <span>{breadcrumb.parent}</span>
-                <span className="text-[#99A89D]">/</span>
-                <span className="text-[#11231B] font-bold">{breadcrumb.current}</span>
+                <span className="text-[#A2B0A6]">/</span>
+                <span className="text-sm font-bold text-[#11231B]">{breadcrumb.current}</span>
+                <span className="hidden xl:inline-flex items-center text-[11px] font-semibold text-[#526458] bg-[#F2F5ED] border border-[#D5DDCF] px-2.5 py-1 rounded-lg ml-2">
+                  Municipal Road Monitoring
+                </span>
               </div>
             </div>
 
-            <div className="flex items-center gap-4">
-              {/* Spacious, Beautiful Search Bar */}
+            {/* Right: Search, Date, Status, Alerts, Avatar */}
+            <div className="flex items-center gap-3 sm:gap-4">
+              {/* Spacious, Highly Readable Search Bar */}
               <form onSubmit={handleSearchSubmit} className="relative hidden md:block">
-                <Search size={16} className="absolute left-4 top-1/2 -translate-y-1/2 text-[#7C8E82] pointer-events-none" />
+                <Search size={18} className="navbar-search-icon" />
                 <input
                   type="text"
-                  placeholder="Search reports, locations..."
+                  placeholder="Search reports, locations, severity..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-80 lg:w-96 pl-11 pr-4 py-2.5 rounded-full bg-white border border-[#D5DACF] text-xs text-[#11231B] placeholder:text-[#88998D] focus:outline-none focus:border-[#0E382B] focus:ring-2 focus:ring-[#0E382B]/15 transition-all shadow-xs"
+                  className="navbar-search-input w-80 lg:w-[420px]"
                 />
+                <kbd className="absolute right-3.5 top-1/2 -translate-y-1/2 hidden lg:inline-flex items-center gap-0.5 px-2 py-0.5 rounded-md bg-white border border-[#D0D8C8] text-[10px] font-mono font-bold text-[#6D7F72] shadow-2xs pointer-events-none select-none">
+                  ⌘K
+                </kbd>
               </form>
 
-              {/* Date */}
-              <span className="text-xs font-semibold text-[#53655B] hidden sm:inline-block px-1">
-                Oct 24, 2026
-              </span>
+              {/* Date Badge */}
+              <div className="hidden sm:flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-[#F6F8F3] border border-[#DCE4D6] text-xs font-semibold text-[#526458]">
+                <span>Oct 24, 2026</span>
+              </div>
 
-              {/* Demo Mode Badge */}
-              <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#E2EFD2] border border-[#C6DCB0] text-[#245218] text-xs font-bold shadow-xs">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#245218] animate-pulse" />
-                Demo Mode
+              {/* Live Status Badge */}
+              <span className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-[#E8F4DA] border border-[#C5DDB0] text-[#1D4A14] text-xs font-bold shadow-2xs">
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-600"></span>
+                </span>
+                <span className="hidden lg:inline">Network</span> Live
               </span>
 
               {/* Notification Bell */}
               <button
                 onClick={() => navigate('/my-reports?severity=Critical')}
-                className="relative p-2.5 rounded-xl bg-white border border-[#D8DDD1] text-[#4A5D52] hover:text-[#11231B] hover:border-[#CCD4C5] transition-all shadow-xs"
+                className="relative p-2.5 rounded-xl bg-[#F8FAF5] hover:bg-white border border-[#CCD5C5] hover:border-[#0E382B] text-[#4A5D52] hover:text-[#11231B] transition-all shadow-2xs cursor-pointer"
                 aria-label={`Notifications: ${criticalCount} critical issues`}
               >
-                <Bell size={17} />
+                <Bell size={18} />
                 {criticalCount > 0 && (
-                  <span className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-[#D32F2F] text-[10px] font-extrabold flex items-center justify-center text-white ring-2 ring-white">
+                  <span className="absolute -top-1.5 -right-1.5 w-5 h-5 rounded-full bg-[#D32F2F] text-[10px] font-black flex items-center justify-center text-white ring-2 ring-white shadow-xs">
                     {criticalCount}
                   </span>
                 )}
               </button>
 
               {/* User Avatar */}
-              <div className="w-9 h-9 rounded-full bg-[#0E382B] text-[#C8F169] text-xs font-extrabold flex items-center justify-center ring-2 ring-white shadow-xs">
-                RA
+              <div
+                onClick={() => navigate('/about')}
+                className="flex items-center gap-2.5 pl-1 cursor-pointer group"
+                title="View Team Profile"
+              >
+                <div className="w-10 h-10 rounded-2xl bg-[#0E382B] text-[#C8F169] text-xs font-black flex items-center justify-center ring-2 ring-white shadow-xs group-hover:scale-105 transition-transform">
+                  RA
+                </div>
+                <div className="hidden 2xl:block text-left">
+                  <p className="text-xs font-bold text-[#11231B] leading-tight">Admin Ops</p>
+                  <p className="text-[10px] text-[#7A8C80] font-medium leading-none mt-0.5">Lucknow HQ</p>
+                </div>
               </div>
             </div>
           </header>
 
-          {/* Page Viewport with Contained Max Width */}
+          {/* Page Viewport with Contained Max Width & Ample Padding */}
           <div className="flex-1 overflow-y-auto">
-            <div className="px-6 sm:px-8 lg:px-10 py-8 max-w-7xl mx-auto space-y-8 pb-20">
+            <div className="px-6 sm:px-10 lg:px-12 py-8 max-w-7xl mx-auto space-y-9 pb-24">
               <Routes>
                 <Route path="/" element={<Overview />} />
                 <Route path="/map" element={<MapPage />} />
